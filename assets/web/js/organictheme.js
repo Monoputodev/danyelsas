@@ -44,28 +44,9 @@ $(document).ready(function() {
     });
 
 
-	/*slideshow script code start here*/
-	$('.slideshow1').owlCarousel({
-				loop: true,
-				margin: 0,
-				autoplay: true,
-				smartSpeed: 1500,
-				dots: true,
-				nav:false,
-				// navText:['<i class="fa fa-angle-left fa1"></i>', '<i class="fa fa-angle-right fa2"></i>'],
-				responsiveClass: true,
-				responsive: {
-					0: {
-						items: 1
-					},
-					991: {
-						items: 1
-					},
-					1180: {
-						items: 1
-					}
-				}
-			});
+
+
+
 
 		$('.slideshow').owlCarousel({
 				loop: true,

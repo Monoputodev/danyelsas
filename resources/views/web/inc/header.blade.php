@@ -1,5 +1,5 @@
 <header class="">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             {{-- <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 top">
                 <ul class="list-inline float-start icon">
@@ -11,11 +11,11 @@
 
             </ul>
         </div> --}}
-        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+        <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
             <div id="logo">
                 <a href="{{ route('index') }}">
                     <img class="img-fluid logochange mx-auto"
-                      src="{{asset('')}}uploads/content/{{ $content->website_logo }}" alt="logo" title="logo">
+                      src="{{asset('')}}uploads/content/{{ $content->website_logo }}" alt="logo" style="height: 80px" title="logo">
                 </a>
             </div>
         </div>
@@ -38,38 +38,40 @@
                           aria-expanded="false" aria-label="Toggle navigation"><span
                               class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse padd0" id="navbarSupportedContent">
-                            <ul class="nav navbar-nav">
+                            <ul class="nav navbar-nav justify-content-end">
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('index') }}">Home</a>
-                                </li>
-                                <!--<li class="dropdown topheading">-->
-                                <!--    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"-->
-                                <!--      aria-expanded="false">Service</a>-->
-                                <!--    <div class="dropdown-menu">-->
-                                <!--        <div class="dropdown-inner">-->
-                                <!--            <ul class="list-unstyled">-->
-
-                                <!--                @foreach ($categories as $k => $category)-->
-                                <!--                <li>-->
-                                <!--                    <a-->
-                                <!--                      href="{{ route('service.details',$category->id) }}">{{ $category->title }}</a>-->
-                                <!--                </li>-->
-                                <!--                @endforeach-->
-
-
-                                <!--            </ul>-->
-                                <!--        </div>-->
-                                <!--    </div>-->
-                                <!--</li>-->
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('service.index') }}">Services</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('product.index') }}">Products</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('about') }}">About us</a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('service.index') }}">Services</a>
+                                </li>
+                                <li class="dropdown topheading">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                      aria-expanded="false">Products</a>
+                                    <div class="dropdown-menu">
+                                        <div class="dropdown-inner">
+                                            <ul class="list-unstyled">
+
+                                                @foreach ($categories as $k => $category)
+                                                <li>
+                                                    <a
+                                                      href="{{ route('service.details',$category->id) }}">{{ $category->title }}</a>
+                                                </li>
+                                                @endforeach
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                {{-- <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('product.index') }}">Products</a>
+                                </li> --}}
+
 
                                 <li>
                                     <a class="nav-link" href="{{ route('contact') }}">Contact us</a>

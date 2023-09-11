@@ -17,6 +17,7 @@
 
         <!-- jquery -->
         @include('web.inc.script')
+        @stack('script')
     </body>
 
 

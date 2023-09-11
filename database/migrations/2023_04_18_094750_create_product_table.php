@@ -19,6 +19,7 @@ class CreateProductTable extends Migration
             $table->longText('description');
             $table->string('image');
             $table->string('product_category');
+            $table->string('product_sub_category')->nullable();
             $table->tinyInteger('order');
             $table->tinyInteger('status')->default('1');
             $table->timestamps();

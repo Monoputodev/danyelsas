@@ -51,6 +51,7 @@ class ProductController extends Controller
             'title' => 'required',
             'description' => 'required',
             'product_category' => 'required',
+            'product_sub_category' => 'nullable',
             'image' => 'required|image|max:2048', // max file size of 2MB
         ]);
         $image = $request->file('image');
@@ -114,7 +115,7 @@ class ProductController extends Controller
             'order' => 'required',
             'product_category' => 'required',
             'description' => 'required',
-
+            'product_sub_category' => 'nullable',
         ]);
 
         if ($request->hasFile('image')) {

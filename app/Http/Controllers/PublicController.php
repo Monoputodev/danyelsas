@@ -10,6 +10,7 @@ use App\Models\Faq;
 use App\Models\Hero;
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\SubCategory;
 use App\Models\Team;
 use App\Models\Testimonial;
 
@@ -34,6 +35,12 @@ class PublicController extends Controller
     }
 
 
+    public function getsubcat($id)
+    {
+        $subcategories = SubCategory::query()->where('status',1)->where('cat_id',$id)->get()->toJson();
+        // dd($subcategories);
+        return  $subcategories;
+    }
 
 
     public function dashboard()
@@ -80,10 +87,11 @@ class PublicController extends Controller
     {
 
         $category = Category::find($id);
+        $subcategories = SubCategory::where('cat_id',$id)->where('status',1)->get();
         $products = Product::where('status', '1')->where('product_category', $category->id)->orderBy('order', 'ASC')->get();
 
         // dd($service);
-        return view('web.pages.category.details', compact('category', 'products'));
+        return view('web.pages.category.details', compact('category', 'products','subcategories'));
     }
 
     public function Category($id)

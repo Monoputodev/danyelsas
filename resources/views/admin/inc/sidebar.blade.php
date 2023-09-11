@@ -111,6 +111,23 @@
     </li>
     {{-- End - category --}}
 
+
+
+        {{-- subcategory --}}
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="bx bx-home-circle"></i>
+                <span key="t-subcategory">SubCategory</span>
+            </a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{ route('subcategories.index') }}" key="t-list">All SubCategory</a></li>
+                <li><a href="{{ route('subcategories.create') }}" key="t-create">Create SubCategory</a></li>
+
+            </ul>
+        </li>
+        {{-- End - subcategory --}}
+
+
     {{-- product --}}
     <li>
         <a href="javascript: void(0);" class="has-arrow waves-effect">

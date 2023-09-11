@@ -432,7 +432,7 @@ header #logo img {
 #menu .nav>li>a {
     background-color: transparent;
     color: #17161f;
-    font-size: 14px;
+    font-size: 24px;
     font-weight: 500;
     padding: 15px 32px;
     line-height: 14px;
@@ -8213,4 +8213,14 @@ footer .powered li {
     text-align: center;
     right: 0;
     padding: 200px 0px 0px 0px;
+}
+
+img.img-fluid.sliderchange {
+    width: 100%;
+}
+.hero-caption h1 {
+    font-size: 80px;
+}
+.hero-caption h5 {
+    font-size: 60px;
 }

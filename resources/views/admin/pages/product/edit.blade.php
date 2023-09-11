@@ -48,15 +48,23 @@
 
                                     <div class="col-md-6">
                                         <label for="service" class="form-label">Product Category :</label>
-                                        <select id="service" name="product_category" class="form-select">
+                                        <select id="service" onchange="getcat(this.value)" name="product_category" class="form-select">
 
                                             <option selected="">Choose...</option>
-                                            @foreach ($Categories as $service)
-                                            <option value="{{ $service->id }}" @if ($service->id ==
+                                            @foreach ($Categories as $data)
+                                            <option value="{{ $data->id }}" @if ($data->id ==
                                                 $product->product_category) selected @endif>
-                                                {{ $service->title }}
+                                                {{ $data->title }}
                                             </option>
                                             @endforeach
+
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="product_sub_category" class="form-label">Product Sub Category :</label>
+                                        <select id="product_sub_category" name="product_sub_category" class="form-select">
+
+
 
                                         </select>
                                     </div>
@@ -87,6 +95,36 @@
         </div> <!-- container-fluid -->
     </div> <!-- page-content -->
 
+    <script>
+        function getcat(categoryId) {
+            const selectedsubcat = {{ $product->product_sub_category }};
+            const url = `{{ url('getsubcat') }}`;
+            fetch(`${url}/${categoryId}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    const subcategorySelect = document.getElementById("product_sub_category");
+                    subcategorySelect.innerHTML = ""; // Clear previous options
 
-    {{-- </div> --}}
+                    data.forEach(subcategory => {
+                        const option = document.createElement("option");
+                        option.value = subcategory.id;
+                        option.text = subcategory.title;
+                        if(selectedsubcat){
+                            if (subcategory.id == selectedsubcat) {
+                            option.selected = true; // Select the subcategory if it matches the product's subcategory
+                        }
+                        }
+
+                        subcategorySelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching subcategories:", error);
+                });
+        }
+
+        getcat({{ $product->product_category }});
+    </script>
+    </div>
     @endsection

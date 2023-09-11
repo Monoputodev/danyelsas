@@ -37,12 +37,20 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="service" class="form-label">Product Category :</label>
-                                        <select id="service" name="product_category" class="form-select">
+                                        <select id="service" name="product_category" onchange="getcat(this.value)" class="form-select">
 
                                             <option selected="">Choose...</option>
-                                            @foreach ($Categories as $service)
-                                            <option value="{{ $service->id }}">{{ $service->title }}</option>
+                                            @foreach ($Categories as $data)
+                                            <option value="{{ $data->id }}">{{ $data->title }}</option>
                                             @endforeach
+
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="product_sub_category" class="form-label">Product Sub Category :</label>
+                                        <select id="product_sub_category" name="product_sub_category" class="form-select">
+
+
 
                                         </select>
                                     </div>
@@ -71,7 +79,27 @@
 
         </div> <!-- container-fluid -->
     </div> <!-- page-content -->
+<script>
+    function getcat(categoryId) {
+        fetch(`http://localhost/danyelsas/getsubcat/${categoryId}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    const subcategorySelect = document.getElementById("product_sub_category");
+                    subcategorySelect.innerHTML = ""; // Clear previous options
 
+                    data.forEach(subcategory => {
+                        const option = document.createElement("option");
+                        option.value = subcategory.id;
+                        option.text = subcategory.title;
+                        subcategorySelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching subcategories:", error);
+                });
+    }
+</script>
 
     {{-- </div> --}}
     @endsection

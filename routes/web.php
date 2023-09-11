@@ -10,8 +10,10 @@ use App\Http\Controllers\HeroController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialController;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +39,7 @@ Route::get('/blog/{blog}', [PublicController::class, 'blogDetails'])->name('blog
 
 
 
+Route::get('/getsubcat/{id}', [PublicController::class, 'getsubcat'])->name('getsubcat');
 Route::get('/about', [PublicController::class, 'about'])->name('about');
 Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
@@ -142,7 +145,18 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
         Route::get('/active/{category}', [CategoryController::class, 'active'])->name('categories.active');
         Route::get('/inactive/{category}', [CategoryController::class, 'inactive'])->name('categories.inactive');
     });
-
+    Route::prefix('subcategories')->group(function () {
+        // subcategory-Routes
+        Route::get('/', [SubCategoryController::class, 'index'])->name('subcategories.index');
+        Route::get('/create', [SubCategoryController::class, 'create'])->name('subcategories.create');
+        Route::post('/', [SubCategoryController::class, 'store'])->name('subcategories.store');
+        Route::get('/{subcategory}', [SubCategoryController::class, 'show'])->name('subcategories.show');
+        Route::get('/{subcategory}/edit', [SubCategoryController::class, 'edit'])->name('subcategories.edit');
+        Route::put('/{subcategory}', [SubCategoryController::class, 'update'])->name('subcategories.update');
+        Route::get('/{subcategory}', [SubCategoryController::class, 'destroy'])->name('subcategories.destroy');
+        Route::get('/active/{subcategory}', [SubCategoryController::class, 'active'])->name('subcategories.active');
+        Route::get('/inactive/{subcategory}', [SubCategoryController::class, 'inactive'])->name('subcategories.inactive');
+    });
 
     Route::prefix('products')->group(function () {
         // product-Routes
